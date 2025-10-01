@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Estoque</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class='container'>
+        <div header>
+            <h1>Olá, {{ usuario }}!</h1>
+            <div class="nav_links">
+                <a href="{{ url_for('cadastro_produto') }}">Cadastrar/Lista Produto</a>
+                <a href="{{ url_for('logout') }}">Sair</a>
+            </div>
+        </div>
+        
+        <h2>Movimentação de Estoque</h2>
+        <table>
+                <thead>
+                    <tr>
+                        <th>ID Produto</th>
+                        <th>Tipo</th>
+                        <th>Quantidade</th>
+                        <th>Data</th>
+                        <th>Usuário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mov in movimentacoes %}
+                    <tr>
+                        <td>{{ mov.produto_id }}</td>
+                        <td>{{ mov.tipo_movimentacao }}</td>
+                        <td>{{ mov.quantidade }}</td>
+                        <td>{{ mov.data_movimentacao }}</td>
+                        <td>{{ mov.usuario }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">Nenhuma movimentação encontrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+        </table>
+        
+    </div>
+</body>
+</html>
